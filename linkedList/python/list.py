@@ -41,6 +41,19 @@ class List:
         while(temp.next != None):
             temp = temp.next
         temp.next = newTail
+
+#pushes node ahead of given node in list. 
+    def prependNode(self, previousNode, newNode):
+        #define newNode
+        newnode = Node(newNode)
+        #if previuos node is null then return 
+        if(previousNode is None):
+            print("Node is not in linked list, try a different node")
+            return
+        newnode.next = previousNode.next
+        previousNode.next = newnode
+        
+
         
 
     #removes node from any part of the linked list
@@ -63,6 +76,9 @@ class List:
             self.head = temp.next
             temp = None
             return
+
+    
+    
 
     #removes tail from list
     def removeTail(self):
@@ -146,13 +162,27 @@ if __name__ =='__main__':
     listThree.pushNodeToTail(4)
     listThree.printNodes()
 
+
+#remove any node in the linked list
+    print("PREPEND NODE IN LIST TO EXISTING NODE-------------")
+    print("------------------")
+    listThree.printNodes()
+    listThree.prependNode(listThree.head,2)
+    print("------------------")
+    listThree.printNodes()
+
+    
+
+
     #remove any node in the linked list
     print("REMOVING ANY NODE FROM LIST-------------")
     print("------------------")
     listThree.printNodes()
     listThree.removeNode(3)
+    listThree.removeNode(2)
+    listThree.removeNode({"message":"Head, First Node"})
     print("------------------")
     listThree.printNodes()
 
 
-    #remove node from any part of the list
+   
