@@ -44,10 +44,17 @@ class List:
         
 
     #removes node from any part of the linked list
+    #TODO: Update with if else and validation
     def removeNode(self, node):
         temp = self.head
+        while(temp is not None):
+            if temp.data == node:
+                break
+            prevNode = temp
+            temp = temp.next
 
-
+        prevNode.next = temp.next
+        temp = None
 
     #removes head from the list
     def removeHeadFromList(self):
@@ -134,4 +141,18 @@ if __name__ =='__main__':
     print("PUSHING NODE TO HEAD OF EMPTY LIST---------------")
     listThree = List()
     listThree.pushNode({"message":"Head, First Node"})
+    listThree.pushNode({"message":"Second Node"})
+    listThree.pushNodeToTail(3)
+    listThree.pushNodeToTail(4)
     listThree.printNodes()
+
+    #remove any node in the linked list
+    print("REMOVING ANY NODE FROM LIST-------------")
+    print("------------------")
+    listThree.printNodes()
+    listThree.removeNode(3)
+    print("------------------")
+    listThree.printNodes()
+
+
+    #remove node from any part of the list
