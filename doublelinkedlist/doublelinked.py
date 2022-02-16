@@ -67,7 +67,7 @@ class DoubleList:
             if self.head.next is None:
                 self.head = None
                 return
-    #delete any nth node from the double linked list
+    #delete any nth node from the double linked list, will delete multi same values
     def removeNode(self, node):
        temp = self.head
        #define bail out if none
@@ -78,17 +78,17 @@ class DoubleList:
            print("Deleting node that is head of list")
            self.head = temp.next
            self.head.prev = None
-        #delete if last node
-       elif temp.data == node and temp.next is None:
-           print(temp.prev.next)
-           #temp.next.prev = temp.prev   
+        #delete if last node   
        else:
            while temp:
-               if temp.data == node:
-                   temp.prev.next = temp.next
-                   temp.next.prev = temp.prev
+               if temp.data == node and temp.next is None:
+                   self.slice()
+               elif temp.data == node:
+                    temp.prev.next = temp.next
+                    temp.next.prev = temp.prev
                temp = temp.next
 
+    #just a helper method to see what the last node in list is. 
     def getLastNode(self):
         head = self.head
         if self.head.next is not None:
@@ -136,9 +136,10 @@ if __name__ == '__main__':
     dList.insertNode("Test")
     dList.insertNode("Test TWO")
     dList.insertNode(5)
+    dList.insertNode(6)
     print("--------------------")
     dList.printNodes()
     print("REMOVING NODE FROM LIST AT ANY POS---------------------")
-    dList.getLastNode()
-    #dList.printNodes()
+    dList.removeNode(6)
+    dList.printNodes()
     
